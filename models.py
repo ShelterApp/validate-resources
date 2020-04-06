@@ -321,7 +321,11 @@ def getgoogleAddress(name, place):
                 for j in temp[i+1].text.split(','):
                     schdule.append([[], [], []])
                     schdule[count][0] = temp[i].text.upper()
+                    if schdule[count][0].find('EASTER'):
+                        schdule[count][0]=schdule[count][0].split('(')[0]
+                        j = j.split('H')[0]
                     # print(j.split('–'))
+                    
                     if j.split('–')[0].find('AM') != -1:
                        schdule[count][1].append(j.split('–')[0][:-2]+':00 AM')
                     elif j.split('–')[0].find('PM') != -1:

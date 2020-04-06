@@ -19,11 +19,18 @@ sudo apt-get install python3-pip
 ```
 pip3 install -r requirements.txt
 ```
+- Add inbound port rules for port 80 to accept all connection types
 
-- Run controller.py and open 127.0.0.1:5000/ in the browser
+- Same for outbound port rules
+
+- Restart server
+
+- You can change db and password in config.json
+ 
+- Run server by command
 
 ```
-python3 controller.py
+sudo python3 controller.py
 ```
 
 ## Features
