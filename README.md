@@ -2,6 +2,14 @@
 
 ## How to run
 
+- SSH into server using server credentials( present in server-cred.json)
+
+- Add inbound port rules for port 80 to accept all connection types
+
+- Same for outbound port rules
+
+- Restart server
+
 - First install python3 using
 
 ```
@@ -19,11 +27,6 @@ sudo apt-get install python3-pip
 ```
 pip3 install -r requirements.txt
 ```
-- Add inbound port rules for port 80 to accept all connection types
-
-- Same for outbound port rules
-
-- Restart server
 
 - You can change db and password in config.json
  
