@@ -1,0 +1,55 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Page</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <div class="container">
+        <div align="center">
+            <img src="../static/img/logo2.jpg" width="20%" height="25%">
+        </div>
+        <div align="center">
+            <p class="form-control" style="border: none;">Welcome! Login to ShelterApp Volunteer Portal</p>
+        </div>
+        <div align="center" class="align-items-center">
+            <style>
+                .align-items-center {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            </style>
+            <div class="col-xs-8">
+                <form method="POST" action="/login">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" placeholder="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" style="background-color:#6201ea;" class="btn btn-primary form-control"
+                        id="btn" style="float: right;">Login</button>
+                </form>
+                <a style="color: coral; font-size: small;" href="/SignUp">Don't have account?</a>
+                <a style="color: coral; font-size: small;" href="/ForgotPassword">Forgot Password?</a>
+                <br>
+                {% block content %}
+                <!-- <div class="alert alert-warning"> -->
+                {% for message in get_flashed_messages() %}
+                <button type="button" class="close" style="color:red" data-dismiss="alert">&times;</button>
+                <a style="color:red;font-size:medium;" href="/SignUp">{{ message }}</a>
+                <!-- </div> -->
+                {% endfor %}
+                {% block page_content %}{% endblock %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>

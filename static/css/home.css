@@ -1,0 +1,34 @@
+ul {
+  color: #6201ea;
+}
+li {
+  color: #6201ea;
+}
+input {
+  border: none;
+  border-width: 0;
+  box-shadow: none;
+}
+textarea {
+  resize: none;
+  overflow: hidden;
+  border: none;
+  border-width: 0;
+  box-shadow: none;
+  width: 100%;
+}
+th {
+  width: 5%;
+  color: #6201ea;
+}
+td {
+  width: 25%;
+  padding: 0;
+  margin: 0;
+}
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}

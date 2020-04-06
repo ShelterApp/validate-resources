@@ -1,0 +1,62 @@
+<head>
+    <title id="org"></title>
+    <link rel="stylesheet" href="./static/css/home.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./static/css/jquery.timepicker.min.css">
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./static/js/jquery.timepicker.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="./static/js/home.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .loader {
+            border: 10px solid #f3f3f3;
+            /* Light grey */
+            border-top: 16px solid #3498db;
+            /* Blue */
+            margin-left: 40%;
+            margin-top: 10%;
+            border-radius: 50%;
+            width: 8%;
+            height: 16%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <div class="loader" id="loader"></div>
+    <div>
+        <form onsubmit="return validateform()">
+            <div id="Ptbody">
+            </div>
+            <div>
+                <input id='closedschedule' name='closedschedule' type='hidden' **/**>
+                <input id='schedule' name='schedule' type='hidden' **/**>
+                <button id="btn" style="background-color:#6201ea;float:right;margin-top: 13px;" type="submit"
+                    class="btn btn-primary" formaction="/ApplyChanges" formmethod="POST" style="float:right;">Update
+                    Service</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <form style="align-items: flex-end;">
+            <div>
+                <button id="btn" style="float:right;background-color:#6201ea;" type="submit" class="btn btn-primary"
+                    formaction="/Skip" formmethod="POST">Skip Service</button>
+            </div>
+        </form>
+    </div>
+</body>
