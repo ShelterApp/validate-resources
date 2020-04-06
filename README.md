@@ -1,4 +1,4 @@
-# Shelter Web app
+# ShelterApp Volunteer Portal
 
 ## How to run
 
