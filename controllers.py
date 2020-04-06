@@ -3,8 +3,6 @@ from flask import Flask
 import json
 from flask import Flask, flash, redirect, render_template, request, session, abort
 from models import getData, init, getdbdata, putindb, getUser, userInsert, changePassword
-from flask_sqlalchemy import SQLAlchemy
-import sqlite3
 app = Flask(__name__)
 
 pwd_context = CryptContext(
