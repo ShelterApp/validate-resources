@@ -246,9 +246,9 @@ def getfbAddress(code):
                 except Exception as e:
                     print(e)
                     data[1] = ['', '', '', '', '']
-            if code != 2:
+            if code != 4:
                 try:
-                    if soup.select_one("._2pi9 > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)").text == "Permanently closed":
+                    if soup.select_one("._14-5").text == "Permanently closed":
                         data[9] = 0
                     else:
                         data[9] = 1
@@ -267,7 +267,7 @@ def getgoogleAddress(name, place):
         'Accept-Language': 'en-GB'
     }
     weeks = {"MONDAY": 1, "TUESDAY": 2, "WEDNESDAY": 3,
-             "THURSDAY": 4, "FRIDAY": 5, "SATURDAY": 6, "SUNDAY": 7}
+            "THURSDAY": 4, "FRIDAY": 5, "SATURDAY": 6, "SUNDAY": 7, "SUNDAY(EASTER)": 8}
     url = "https://www.google.com/search?"
     query = name+" "+place
     url += "q="+query.split(' ')[0]
@@ -305,49 +305,54 @@ def getgoogleAddress(name, place):
             ".zdqRlf > span:nth-child(1) > span:nth-child(1)").text)
     except:
         data[3] = ''
-    temp = soup.select(".WgFkxc > tr > td")
-    schdule = []
-    i = 0
-    count = 0
-    while i < len(temp):
-        if temp[i+1].text == "Open 24 hours":
-            data[11] = 1
-            break
-        elif temp[i+1].text == "Closed":
-            i = i+2
-        else:
-            for j in temp[i+1].text.split(','):
-                schdule.append([[], [], []])
-                schdule[count][0] = temp[i].text.upper()
-                # print(j.split('–'))
-                if j.split('–')[0].find('am') != -1:
-                    schdule[count][1].append(j.split('–')[0][:-2]+':00 AM')
-                elif j.split('–')[0].find('pm') != -1:
-                    schdule[count][1].append(j.split('–')[0][:-2]+':00 PM')
-                else:
-                    if j.split('–')[1].find('am') != -1:
-                        schdule[count][1].append(j.split('–')[0]+':00 AM')
-                    elif j.split('–')[1].find('pm') != -1:
-                        schdule[count][1].append(j.split('–')[0]+':00 PM')
-                if j.split('–')[1].find('am') != -1:
-                    schdule[count][2].append(j.split('–')[1][:-2]+':00 AM')
-                elif j.split('–')[1].find('pm') != -1:
-                    schdule[count][2].append(j.split('–')[1][:-2]+':00 PM')
-                if len(schdule[count][2][0]) == 10:
-                    schdule[count][2][0] = schdule[count][2][0][0:4]+schdule[count][2][0][-3:]
-                if len(schdule[count][1][0]) == 10:
-                    schdule[count][1][0] = schdule[count][1][0][0:4]+schdule[count][1][0][-3:] 
-                if len(schdule[count][2][0]) == 11:
-                    schdule[count][2][0] = schdule[count][2][0][0:5]+schdule[count][2][0][-3:]
-                if len(schdule[count][1][0]) == 11:
-                    schdule[count][1][0] = schdule[count][1][0][0:5]+schdule[count][1][0][-3:]
-
-            i = i+2
-            count += 1
-    def weeksort(a):
-        return weeks[a[0]]
-    schdule.sort(key=weeksort)
-    data[10] = schdule
+    try:
+        temp = soup.select(".WgFkxc > tr > td")
+        schdule = []
+        i = 0
+        count = 0
+        while i < len(temp):
+            if temp[i+1].text == "Open 24 hours":
+               data[11] = 1
+               break
+            elif temp[i+1].text == "Closed":
+                i = i+2
+            else:
+                print(temp[i].text,temp[i+1].text)
+                for j in temp[i+1].text.split(','):
+                    schdule.append([[], [], []])
+                    schdule[count][0] = temp[i].text.upper()
+                    # print(j.split('–'))
+                    if j.split('–')[0].find('AM') != -1:
+                       schdule[count][1].append(j.split('–')[0][:-2]+':00 AM')
+                    elif j.split('–')[0].find('PM') != -1:
+                       schdule[count][1].append(j.split('–')[0][:-2]+':00 PM')
+                    else:
+                        if j.split('–')[1].find('AM') != -1:
+                            schdule[count][1].append(j.split('–')[0]+':00 AM')
+                        elif j.split('–')[1].find('PM') != -1:
+                            schdule[count][1].append(j.split('–')[0]+':00 PM')
+                    if j.split('–')[1].find('AM') != -1:
+                        schdule[count][2].append(j.split('–')[1][:-2]+':00 AM')
+                    elif j.split('–')[1].find('PM') != -1:
+                        schdule[count][2].append(j.split('–')[1][:-2]+':00 PM')
+                    if len(schdule[count][2][0]) == 10:
+                        schdule[count][2][0] = schdule[count][2][0][0:4]+schdule[count][2][0][-3:]
+                    if len(schdule[count][1][0]) == 10:
+                        schdule[count][1][0] = schdule[count][1][0][0:4]+schdule[count][1][0][-3:] 
+                    if len(schdule[count][2][0]) == 11:
+                        schdule[count][2][0] = schdule[count][2][0][0:5]+schdule[count][2][0][-3:]
+                    if len(schdule[count][1][0]) == 11:
+                        schdule[count][1][0] = schdule[count][1][0][0:5]+schdule[count][1][0][-3:]
+                    count +=1
+                i = i+2
+        def weeksort(a):
+            return weeks[a[0]]
+        print(schdule)
+        schdule.sort(key=weeksort)
+        data[10] = schdule
+    except Exception as e:
+        print(e)
+        data[10] = []
 
 
 def getData(i):
