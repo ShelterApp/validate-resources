@@ -33,7 +33,7 @@ pip3 install -r requirements.txt
 - Run server by command
 
 ```
-sudo python3 controller.py
+sudo python3 controllers.py
 ```
 
 ## Features
